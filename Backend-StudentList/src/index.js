@@ -8,7 +8,7 @@ app.use(express.json());
 mongoose.set('strictQuery', true);
 mongoose
   .connect(
-    "mongodb+srv://sonal-plutonium:5dJokPsnG43EGYHE@cluster0.koc4qx2.mongodb.net/Student-List",
+    "mongodb+srv://saurabhshete281:JBmRPjzC58VOejIX@cluster0.jih1tjw.mongodb.net/backEndAssignment",
     {
       useNewUrlParser: true,
     }

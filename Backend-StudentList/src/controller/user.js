@@ -5,7 +5,7 @@ module.exports = {
   createUser: async (req, res) => {
     try {
       let { email } = req.body;
-      let uniqEmail = await userModel.findOne({email});
+      let uniqEmail = await userModel.findOne({ email });
       if (uniqEmail)
         return res
           .status(400)
@@ -19,7 +19,23 @@ module.exports = {
 
   login: async (req, res) => {
     try {
-      let data = req.body;
+      data = req.body
+      userName = data.email
+      password = data.password
+
+      if (Object.keys(data).length == 0) {
+        return res.status(400).send({ status: false, message: 'please enter data' })
+      }
+      if (!userName) {
+        return res.status(400).send({ status: false, message: 'Email is required' })
+      }
+      if (!password) {
+        return res.status(400).send({ status: false, message: 'password is required' })
+      }
+      let user = await userModel.findOne({ email: userName, password: password })
+      if (!user) {
+        return res.status(400).send({ status: false, message: 'username or password incorrect' })
+      }
       let loginUser = await userModel.findOne(data);
       if (!loginUser)
         return res
